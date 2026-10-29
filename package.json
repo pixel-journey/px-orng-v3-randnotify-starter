@@ -1,0 +1,14 @@
+{
+  "name": "px-orng-v3-randnotify-starter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Educational lab: ORNG v3 job table and randnotify hygiene",
+  "scripts": {
+    "test": "node --experimental-strip-types --test invariants/*.test.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}
