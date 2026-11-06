@@ -26,6 +26,24 @@ describe("openJob", () => {
     const jobs = openJob([], 1n, "alice", "wager-1");
     assert.throws(() => openJob(jobs, 1n, "bob", "wager-2"), /already open/);
   });
+
+  it("refuses empty or overlong assoc", () => {
+    assert.throws(() => openJob([], 1n, "alice", ""), /assoc length/);
+    assert.throws(() => openJob([], 1n, "alice", "x".repeat(65)), /assoc length/);
+  });
+
+  it("refuses non-positive job id", () => {
+    assert.throws(() => openJob([], 0n, "alice", "wager-1"), /positive/);
+  });
+
+  it("refuses a 33rd open job", () => {
+    let jobs = [];
+    for (let i = 1; i <= 32; i++) {
+      jobs = openJob(jobs, BigInt(i), "alice", `w-${i}`);
+    }
+    assert.equal(jobs.length, 32);
+    assert.throws(() => openJob(jobs, 33n, "alice", "w-33"), /too many open jobs/);
+  });
 });
 
 describe("canHandleNotify", () => {
@@ -39,7 +57,7 @@ describe("canHandleNotify", () => {
     const jobs = openJob([], 1n, "alice", "wager-1");
     assert.throws(
       () => canHandleNotify(jobs, { ...baseCtx, dapp: "otherdapp" }),
-      /dapp must equal self/
+      /dapp must equal self/,
     );
   });
 
@@ -47,7 +65,7 @@ describe("canHandleNotify", () => {
     const jobs = openJob([], 1n, "alice", "wager-1");
     assert.throws(
       () => canHandleNotify(jobs, { ...baseCtx, caller: "evil" }),
-      /caller must be orng/
+      /caller must be orng/,
     );
   });
 
@@ -71,12 +89,13 @@ describe("resolveJob", () => {
 });
 
 describe("requestrandBody", () => {
-  it("builds unsigned body", () => {
-    const hex = "a".repeat(64);
+  it("builds unsigned body and lowercases signing value", () => {
+    const hex = "A".repeat(64);
     const body = requestrandBody("dappcontract", 42n, hex);
     assert.equal(body.account, "orng.wax");
     assert.equal(body.name, "requestrand");
     assert.equal(body.data.assoc_id, "42");
+    assert.equal(body.data.signing_value, "a".repeat(64));
   });
 
   it("refuses bad signing value", () => {
