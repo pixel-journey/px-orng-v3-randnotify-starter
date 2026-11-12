@@ -1,12 +1,15 @@
 # A job table that resolves once
 
 > **Trust:** private educational lab (Tier B)  
-> **Quest:** 001 — minimal requestrand + randnotify hygiene  
+> **Domain:** WAX ORNG (`orng.wax`) starter  
+> **Sources:** [SOURCES.md](SOURCES.md)  
 > **Vault:** [px-contract-examples-vault](https://github.com/pixel-journey/px-contract-examples-vault)
 
 **One-sentence goal:** Teach a pending job and the callback gates around it: `dapp` must equal `self`, the caller must be the configured oracle, and a job resolves **once**.
 
 **Real code:** `npm test`. **Does not** call `orng.wax`, spend RNG credits, or produce wasm. `requestrandBody` builds an object. It does not broadcast.
+
+Official service: [wax-orng](https://github.com/worldwide-asset-exchange/wax-orng). Sample on docs.wax.io: [RNG smart contract tutorial](https://docs.wax.io/build/tutorials/create-wax-rng-smart-contract/rng_sample).
 
 ## What you can learn
 
@@ -23,6 +26,7 @@
 | `invariants/orng.test.ts` | Executed claims |
 | `EDUCATION.md` | Why the four checks exist |
 | `SECURITY.md` | What a real notify path still needs |
+| `SOURCES.md` | orng.wax contract and docs.wax.io |
 
 ## What is true (executed)
 
@@ -39,56 +43,6 @@
 | `requestrandBody("dappcontract", 42n, 64 hex chars)` | account `orng.wax`, name `requestrand`, `assoc_id` `"42"` |
 | Signing value `"zz"` | refused |
 
-## The rule, in order
-
-```text
-openJob:     new id, owner, assoc; resolved starts false
-canHandle:   dapp === self
-             caller === configured orng
-             job id exists and is not resolved
-resolveJob:  same gates, then resolved = true
-requestrand: unsigned { account: orng.wax, name: requestrand }
-```
-
-Job ids must be a positive `bigint`. Account names are a format check. `assoc` in the source must be 1–64 characters. The table refuses a 33rd open job. Those two caps are in `openJob`; the tests do not hit them.
-
-`signingValue` must be 64 hex characters. The body lowercases it. Nothing stores that value on the job, and nothing checks `assoc` during notify.
-
-```ts
-import { openJob, resolveJob, requestrandBody } from "./invariants/orng.ts";
-
-const ctx = {
-  self: "dappcontract",
-  dapp: "dappcontract",
-  caller: "orng.wax",
-  orng: "orng.wax",
-  jobId: 1n,
-};
-
-let jobs = openJob([], 1n, "alice", "wager-1");
-jobs = resolveJob(jobs, ctx);
-// jobs[0].resolved === true
-// resolveJob(jobs, ctx) throws "job already resolved"
-
-requestrandBody("dappcontract", 42n, "a".repeat(64));
-// { account: "orng.wax", name: "requestrand", data.assoc_id: "42" }
-```
-
-## Edge cases
-
-- `orng` is a field on the context, not a network lookup. The tests set it to `orng.wax`. A different string would be the trusted caller for that call.
-- Resolving does not pay anyone. There is no wager amount and no payout.
-- The job's `assoc` string is not the `assoc_id` on the unsigned body. The tests never link them.
-- A missing job and an already-resolved job are different errors.
-
-## Best practice and the opposite
-
-**Do** require the notify to name this contract, require the oracle account, and refuse a second resolve.  
-**Do** keep the request body unsigned until a real signer exists.
-
-**Do not** treat a passing `resolveJob` as `require_auth(orng.wax)`. This file compares strings.  
-**Do not** treat `requestrandBody` as a sent transaction.
-
 ## Live path, not shipped
 
 ```
@@ -99,13 +53,11 @@ requestrandBody (object only)           [tested]
     → payout                                [not in this repo]
 ```
 
-See [EDUCATION.md](EDUCATION.md) and [SECURITY.md](SECURITY.md).
-
 ## Related
 
-- `px-orng-dual-callback-idempotent` — two callback paths, one resolver
-- `px-orng-coinflip-escrow` — payout math, a different repo
-- Vault index: `px-contract-examples-vault`
+- [px-orng-dual-callback-idempotent](https://github.com/pixel-journey/px-orng-dual-callback-idempotent) — two callback paths, one resolver
+- [px-orng-coinflip-escrow](https://github.com/pixel-journey/px-orng-coinflip-escrow) — payout math
+- [px-invariant-kit](https://github.com/pixel-journey/px-invariant-kit) — shared once / seen / hex helpers
 
 ## Run
 
