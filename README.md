@@ -1,32 +1,29 @@
 # A job table that resolves once
 
-> **Trust:** private educational lab (Tier B)  
 > **Domain:** WAX ORNG (`orng.wax`) starter  
 > **Sources:** [SOURCES.md](SOURCES.md)  
-> **Vault:** [px-contract-examples-vault](https://github.com/pixel-journey/px-contract-examples-vault)
+> **Catalog:** [px-contract-examples-vault](https://github.com/pixel-journey/px-contract-examples-vault)
 
-**One-sentence goal:** Teach a pending job and the callback gates around it: `dapp` must equal `self`, the caller must be the configured oracle, and a job resolves **once**.
+**Goal:** Teach a pending job and the callback gates around it: `dapp` must equal `self`, the caller must be the configured oracle, and a job resolves **once**.
 
-**Real code:** `npm test`. **Does not** call `orng.wax`, spend RNG credits, or produce wasm. `requestrandBody` builds an object. It does not broadcast.
+**Code under test:** `npm test`. Does not call `orng.wax`, spend RNG credits, or produce wasm. `requestrandBody` builds an unsigned action shape — it does not broadcast.
 
-Official service: [wax-orng](https://github.com/worldwide-asset-exchange/wax-orng). Sample on docs.wax.io: [RNG smart contract tutorial](https://docs.wax.io/build/tutorials/create-wax-rng-smart-contract/rng_sample).
+**Official service:** [wax-orng](https://github.com/worldwide-asset-exchange/wax-orng). **Sample:** [RNG smart contract tutorial](https://docs.wax.io/build/tutorials/create-wax-rng-smart-contract/rng_sample).
 
-## What you can learn
+## Learning outcomes
 
 - Why a notify that is not addressed to this contract must be ignored.
 - Why a random account must not be able to mark a job resolved.
-- Why a second callback on the same id is a double-pay if you do not keep a resolved flag.
-- Why an unsigned action body is a teaching shape, not a proof the oracle was asked.
+- Why a second callback on the same id is a double-pay if you omit a resolved flag.
+- Why an unsigned action body is a teaching shape, not proof the oracle was asked.
 
-## What is actually in the repo
+## What is in the repo
 
 | Piece | Role |
 | --- | --- |
 | `invariants/orng.ts` | `openJob`, `canHandleNotify`, `resolveJob`, `requestrandBody` |
 | `invariants/orng.test.ts` | Executed claims |
-| `EDUCATION.md` | Why the four checks exist |
-| `SECURITY.md` | What a real notify path still needs |
-| `SOURCES.md` | orng.wax contract and docs.wax.io |
+| `EDUCATION.md` / `SECURITY.md` / `SOURCES.md` | Pedagogy, threat model, official links |
 
 ## What is true (executed)
 
@@ -58,8 +55,6 @@ requestrandBody (object only)           [tested]
 - [px-orng-dual-callback-idempotent](https://github.com/pixel-journey/px-orng-dual-callback-idempotent) — two callback paths, one resolver
 - [px-orng-coinflip-escrow](https://github.com/pixel-journey/px-orng-coinflip-escrow) — payout math
 - [px-invariant-kit](https://github.com/pixel-journey/px-invariant-kit) — shared once / seen / hex helpers
-
-## Run
 
 ```bash
 npm test
