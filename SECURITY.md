@@ -1,6 +1,6 @@
-# Security notes — ORNG job / notify path
+# Security — ORNG job / notify path
 
-## Mitigated in the lab (tested)
+## Closed in tests
 
 | Attack | Lab mitigation |
 | --- | --- |
@@ -14,7 +14,7 @@
 
 Composition: failed gates leave the job unresolved; two jobs do not share resolve state.
 
-## Production still needs
+## Not closed (production)
 
 | Concern | Guidance |
 | --- | --- |
@@ -22,13 +22,19 @@ Composition: failed gates leave the job unresolved; two jobs do not share resolv
 | Routing | Correct Antelope `on_notify` / first-receiver checks |
 | RAM | Explicit payer policy for job rows |
 | Binding | `assoc_id` / signing value bound to the pending wager exactly once |
-| Credits | Do not open jobs you cannot fund (see credit / stake labs) |
+| Credits | Do not open jobs you cannot fund ([bucket](https://github.com/pixel-journey/px-orng-credit-bucket-monitor) · [topup](https://github.com/pixel-journey/px-orng-pay-per-use-topup-vault)) |
 | Payout atomicity | Resolve flag vs token transfer ordering |
+| Dual callback | Shared writer — [dual-callback](https://github.com/pixel-journey/px-orng-dual-callback-idempotent) |
 | Entropy use | Rejection sampling for modular rolls (dice / multi-roll labs) |
 
-This repository does **not** call `orng.wax` and does not move tokens.
+## Attack angles
 
-## Related security docs
+1. A user-set `caller` field instead of `require_auth(orng.wax)`.  
+2. Separate flags for `randnotify` and `receiverand` (double pay).  
+3. Opening a job without checking credits first.  
+4. Applying a callback for job 2 to job 1 because both were merely "open."  
+5. Treating `requestrandBody` as a broadcast.
 
-- Dual-callback idempotency: [px-orng-dual-callback-idempotent](https://github.com/pixel-journey/px-orng-dual-callback-idempotent)
-- Pause / msig recovery patterns: [px-token-pausable-emergency-guard](https://github.com/pixel-journey/px-token-pausable-emergency-guard)
+## Honesty limits
+
+This repository does **not** call `orng.wax` and does not move tokens. Prefer [wax-orng](https://github.com/worldwide-asset-exchange/wax-orng). Related: [legacy adapter](https://github.com/pixel-journey/px-orng-legacy-receiverand-adapter) · [dual-callback](https://github.com/pixel-journey/px-orng-dual-callback-idempotent) · [ORNG path](https://github.com/pixel-journey/px-contract-examples-vault/blob/main/docs/ORNG-LEARNING-PATH.md).
