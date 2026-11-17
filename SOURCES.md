@@ -1,19 +1,27 @@
-# Official sources
+# Sources
+
+## Official
 
 | Source | Use |
 | --- | --- |
-| [worldwide-asset-exchange/wax-orng](https://github.com/worldwide-asset-exchange/wax-orng) | **orng.wax** contract — `requestrand`, callbacks, decentralized RSA threshold design |
-| [worldwide-asset-exchange/wax-rng-oracle](https://github.com/worldwide-asset-exchange/wax-rng-oracle) | Oracle member process (partial signatures, setrand) |
-| [WAX RNG sample tutorial](https://docs.wax.io/build/tutorials/create-wax-rng-smart-contract/rng_sample) | docs.wax.io sample: request + table hygiene |
-| [docs.wax.io](https://docs.wax.io/) | Broader WAX development docs |
+| [wax-orng](https://github.com/worldwide-asset-exchange/wax-orng) | `requestrand`, callbacks, RSA threshold design |
+| [wax-rng-oracle](https://github.com/worldwide-asset-exchange/wax-rng-oracle) | Oracle member process |
+| [RNG sample tutorial](https://docs.wax.io/build/tutorials/create-wax-rng-smart-contract/rng_sample) | docs.wax.io request + table hygiene |
+| [docs.wax.io](https://docs.wax.io/) | WAX development |
 
 Live account: `orng.wax`. This lab compares **strings** for caller/`dapp` and never broadcasts.
 
-## Related org labs (same domain, different rule)
+## Curriculum (read in this order)
 
-| Repo | Focus |
+| Step | Repo |
 | --- | --- |
-| [px-orng-legacy-receiverand-adapter](https://github.com/pixel-journey/px-orng-legacy-receiverand-adapter) | Legacy `receiverand` path |
-| [px-orng-dual-callback-idempotent](https://github.com/pixel-journey/px-orng-dual-callback-idempotent) | Two callbacks, one resolver |
-| [px-orng-coinflip-escrow](https://github.com/pixel-journey/px-orng-coinflip-escrow) | Payout math |
-| [px-invariant-kit](https://github.com/pixel-journey/px-invariant-kit) | Shared once-flag / seen-id / hex gates |
+| 1 Job + once | **this repo** |
+| 2 Legacy name | [receiverand adapter](https://github.com/pixel-journey/px-orng-legacy-receiverand-adapter) |
+| 3 Both names, one writer | [dual-callback](https://github.com/pixel-journey/px-orng-dual-callback-idempotent) |
+| 4 Credits before open | [credit bucket](https://github.com/pixel-journey/px-orng-credit-bucket-monitor) |
+| 5 Pay-per-call / stake | [topup](https://github.com/pixel-journey/px-orng-pay-per-use-topup-vault) · [auto-stake](https://github.com/pixel-journey/px-orng-auto-wax-stake-manager) |
+| 6 Game books | [coinflip](https://github.com/pixel-journey/px-orng-coinflip-escrow) · [dice](https://github.com/pixel-journey/px-orng-dice-multi-tier-payout) · [roulette](https://github.com/pixel-journey/px-orng-roulette-wheel-escrow) |
+| 7 Sampling helpers | [loot CDF](https://github.com/pixel-journey/px-orng-weighted-loot-table-cdf) · [byte-slicer](https://github.com/pixel-journey/px-orng-byte-slicer-multi-roll) |
+| 8 If orng is down | [drand](https://github.com/pixel-journey/px-rng-fallback-drand-bls-verifier) · [TAPOS](https://github.com/pixel-journey/px-rng-fallback-future-block-tapos) · [commit-reveal](https://github.com/pixel-journey/px-rng-fallback-commit-reveal) |
+
+Index: [ORNG-LEARNING-PATH.md](https://github.com/pixel-journey/px-contract-examples-vault/blob/main/docs/ORNG-LEARNING-PATH.md). Shared once-flag: [invariant-kit](https://github.com/pixel-journey/px-invariant-kit).
