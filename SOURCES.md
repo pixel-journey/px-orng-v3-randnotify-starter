@@ -24,4 +24,4 @@ Live account: `orng.wax`. This lab compares **strings** for caller/`dapp` and ne
 | 7 Sampling helpers | [loot CDF](https://github.com/pixel-journey/px-orng-weighted-loot-table-cdf) · [byte-slicer](https://github.com/pixel-journey/px-orng-byte-slicer-multi-roll) |
 | 8 If orng is down | [drand](https://github.com/pixel-journey/px-rng-fallback-drand-bls-verifier) · [TAPOS](https://github.com/pixel-journey/px-rng-fallback-future-block-tapos) · [commit-reveal](https://github.com/pixel-journey/px-rng-fallback-commit-reveal) |
 
-Index: [ORNG-LEARNING-PATH.md](https://github.com/pixel-journey/px-contract-examples-vault/blob/main/docs/ORNG-LEARNING-PATH.md). Shared once-flag: [invariant-kit](https://github.com/pixel-journey/px-invariant-kit).
+Index: `px-contract-examples-vault` (private index; not this public course). Shared once-flag: [invariant-kit](https://github.com/pixel-journey/px-invariant-kit).

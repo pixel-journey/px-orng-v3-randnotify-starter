@@ -2,8 +2,8 @@
 
 > **Domain:** WAX ORNG (`orng.wax`) starter  
 > **Sources:** [SOURCES.md](SOURCES.md)  
-> **Catalog:** [px-contract-examples-vault](https://github.com/pixel-journey/px-contract-examples-vault)  
-> **Path:** [ORNG-LEARNING-PATH.md](https://github.com/pixel-journey/px-contract-examples-vault/blob/main/docs/ORNG-LEARNING-PATH.md)
+> **Catalog:** `px-contract-examples-vault` (private index; not this public course)  
+> **Path:** `px-contract-examples-vault` (private index; not this public course)
 
 **Goal:** Teach a pending job and the callback gates around it: `dapp` must equal `self`, the caller must be the configured oracle, and a job resolves **once**.
 

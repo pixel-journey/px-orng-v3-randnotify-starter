@@ -40,4 +40,4 @@ If you mark resolved before payout and the payout fails, you strand the wager. I
 
 Fallbacks are educational. On WAX mainnet prefer [wax-orng](https://github.com/worldwide-asset-exchange/wax-orng).
 
-Path: [ORNG-LEARNING-PATH](https://github.com/pixel-journey/px-contract-examples-vault/blob/main/docs/ORNG-LEARNING-PATH.md).
+Path: `px-contract-examples-vault` (private index; not this public course).

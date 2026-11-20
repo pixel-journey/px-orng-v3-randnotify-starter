@@ -37,4 +37,4 @@ Composition: failed gates leave the job unresolved; two jobs do not share resolv
 
 ## Honesty limits
 
-This repository does **not** call `orng.wax` and does not move tokens. Prefer [wax-orng](https://github.com/worldwide-asset-exchange/wax-orng). Related: [legacy adapter](https://github.com/pixel-journey/px-orng-legacy-receiverand-adapter) · [dual-callback](https://github.com/pixel-journey/px-orng-dual-callback-idempotent) · [ORNG path](https://github.com/pixel-journey/px-contract-examples-vault/blob/main/docs/ORNG-LEARNING-PATH.md).
+This repository does **not** call `orng.wax` and does not move tokens. Prefer [wax-orng](https://github.com/worldwide-asset-exchange/wax-orng). Related: [legacy adapter](https://github.com/pixel-journey/px-orng-legacy-receiverand-adapter) · [dual-callback](https://github.com/pixel-journey/px-orng-dual-callback-idempotent) · `px-contract-examples-vault` (private index; not this public course).

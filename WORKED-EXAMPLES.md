@@ -54,4 +54,4 @@ Teaching shape only — not broadcast. Signing value `"zz"` is refused.
 5. resolve once + pay wager
 ```
 
-Credits, stake, and payout math are separate labs (see [ORNG-LEARNING-PATH.md](https://github.com/pixel-journey/px-contract-examples-vault/blob/main/docs/ORNG-LEARNING-PATH.md)).
+Credits, stake, and payout math are separate labs (see `px-contract-examples-vault` (private index; not this public course)).
