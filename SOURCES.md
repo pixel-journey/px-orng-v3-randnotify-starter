@@ -1,6 +1,6 @@
 # Sources
 
-## Official
+## Official ORNG / WAX
 
 | Source | Use |
 | --- | --- |
@@ -10,6 +10,20 @@
 | [docs.wax.io](https://docs.wax.io/) | WAX development |
 
 Live account: `orng.wax`. This lab compares **strings** for caller/`dapp` and never broadcasts.
+
+## WharfKit (host / agent)
+
+| Source | Use |
+| --- | --- |
+| [WharfKit](https://wharfkit.com/) | Prefer SessionKit over eosjs |
+| [wharfkit/skill](https://github.com/wharfkit/skill) | Agent skill: Session, Contract, patterns |
+| [@wharfkit/session](https://www.npmjs.com/package/@wharfkit/session) | Login / transact |
+| [@wharfkit/starter-wax](https://www.npmjs.com/package/@wharfkit/starter-wax) | WAX defaults |
+| [@wharfkit/cli](https://www.npmjs.com/package/@wharfkit/cli) | Typed codegen for contracts |
+
+```bash
+git clone https://github.com/wharfkit/skill.git ~/.claude/skills/wharfkit
+```
 
 ## Curriculum (read in this order)
 
@@ -24,4 +38,4 @@ Live account: `orng.wax`. This lab compares **strings** for caller/`dapp` and ne
 | 7 Sampling helpers | [loot CDF](https://github.com/pixel-journey/px-orng-weighted-loot-table-cdf) · [byte-slicer](https://github.com/pixel-journey/px-orng-byte-slicer-multi-roll) |
 | 8 If orng is down | [drand](https://github.com/pixel-journey/px-rng-fallback-drand-bls-verifier) · [TAPOS](https://github.com/pixel-journey/px-rng-fallback-future-block-tapos) · [commit-reveal](https://github.com/pixel-journey/px-rng-fallback-commit-reveal) |
 
-Index: `px-contract-examples-vault` (private index; not this public course). Shared once-flag: [invariant-kit](https://github.com/pixel-journey/px-invariant-kit).
+Index: [ORNG-LEARNING-PATH.md](https://github.com/pixel-journey/px-contract-examples-vault/blob/main/docs/ORNG-LEARNING-PATH.md). Shared once-flag: [invariant-kit](https://github.com/pixel-journey/px-invariant-kit).
