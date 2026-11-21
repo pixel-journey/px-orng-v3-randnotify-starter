@@ -4,12 +4,12 @@
 
 | Attack | Lab mitigation |
 | --- | --- |
-| Foreign contract triggers “notify” | `dapp` must equal `self` |
+| Foreign contract triggers "notify" | `dapp` must equal `self` |
 | Random account calls resolve | `caller` must equal configured `orng` |
 | Double callback pays twice | `resolved` flag; second resolve throws |
 | Resolve missing job | `unknown job` refused |
 | Duplicate job id | `job id already open` |
-| Unbounded table | max 32 open jobs |
+| Unbounded table | max **32** open jobs |
 | Bad signing value shape | 64 hex chars required for `requestrandBody` |
 
 Composition: failed gates leave the job unresolved; two jobs do not share resolve state.
@@ -37,4 +37,12 @@ Composition: failed gates leave the job unresolved; two jobs do not share resolv
 
 ## Honesty limits
 
-This repository does **not** call `orng.wax` and does not move tokens. Prefer [wax-orng](https://github.com/worldwide-asset-exchange/wax-orng). Related: [legacy adapter](https://github.com/pixel-journey/px-orng-legacy-receiverand-adapter) · [dual-callback](https://github.com/pixel-journey/px-orng-dual-callback-idempotent) · `px-contract-examples-vault` (private index; not this public course).
+This repository does **not** call `orng.wax` and does not move tokens.
+
+| Sibling | Distinction |
+| --- | --- |
+| [dual-callback](https://github.com/pixel-journey/px-orng-dual-callback-idempotent) | Shared once-resolve |
+| [legacy adapter](https://github.com/pixel-journey/px-orng-legacy-receiverand-adapter) | receiverand path |
+| [credit bucket](https://github.com/pixel-journey/px-orng-credit-bucket-monitor) | Free / paid gate |
+
+Prefer [wax-orng](https://github.com/worldwide-asset-exchange/wax-orng). [RNG tutorial](https://docs.wax.io/build/tutorials/create-wax-rng-smart-contract/rng_sample).
